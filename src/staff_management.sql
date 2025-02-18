@@ -1,5 +1,5 @@
 -- Initial SQLite setup
-.open fittrackpro.db
+.open fittrackpro.sqlite
 .mode column
 
 -- Enable foreign key support
@@ -15,7 +15,7 @@ ORDER BY position, last_name, first_name;
 -- 2. Find trainers with one or more personal training session in the next 30 days
 -- TODO: Write a query to find trainers with one or more personal training session in the next 30 days
 
-SELECT DISTINCT s.staff_id, s.first_name, s.last_name, s.email, s.phone_number
+SELECT DISTINCT .staff_id, s.first_name, s.last_name, s.email, s.phone_number
 FROM Staff s
 JOIN TrainingSessions ts ON s.staff_id = ts.trainer_id
 WHERE s.position = 'Trainer'

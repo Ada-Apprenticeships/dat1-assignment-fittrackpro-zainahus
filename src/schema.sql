@@ -106,8 +106,8 @@ CREATE TABLE attendance (
     location_id INT NOT NULL,
     check_in_time DATETIME NOT NULL,
     check_out_time DATETIME,
-    FOREIGN KEY (member_id) REFERENCES Members(member_id) ,
-    FOREIGN KEY (location_id) REFERENCES Locations(location_id) 
+    FOREIGN KEY (member_id) REFERENCES members(member_id) ,
+    FOREIGN KEY (location_id) REFERENCES locations(location_id) 
 );
 drop table if exists class_attendance;
 -- -- 9. class_attendance
