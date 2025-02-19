@@ -23,18 +23,18 @@ SELECT COUNT(*) AS total_members FROM Members;
 
 -- 4. Find member with the most class registrations
 -- TODO: Write a query to find the member with the most class registrations
-SELECT m.member_id, m.first_name, m.last_name, COUNT(cr.registration_id) AS registration_count
+SELECT m.member_id, m.first_name, m.last_name, COUNT(cr.class_attendance_id) AS registration_count
 FROM Members m
-JOIN ClassRegistrations cr ON m.member_id = cr.member_id
+JOIN class_attendance cr ON m.member_id = cr.member_id
 GROUP BY m.member_id, m.first_name, m.last_name
 ORDER BY registration_count DESC
 LIMIT 1;
 
 -- 5. Find member with the least class registrations
 -- TODO: Write a query to find the member with the least class registrations
-SELECT m.member_id, m.first_name, m.last_name, COUNT(cr.registration_id) AS registration_count
+SELECT m.member_id, m.first_name, m.last_name, COUNT(cr.class_attendance_id) AS registration_count
 FROM Members m
-JOIN ClassRegistrations cr ON m.member_id = cr.member_id
+JOIN class_attendance cr ON m.member_id = cr.member_id
 GROUP BY m.member_id, m.first_name, m.last_name
 ORDER BY registration_count ASC
 LIMIT 1;
@@ -44,5 +44,5 @@ LIMIT 1;
 SELECT 
     (COUNT(DISTINCT cr.member_id) * 100.0 / COUNT(DISTINCT m.member_id)) AS percentage_with_registrations
 FROM Members m
-LEFT JOIN ClassRegistrations cr ON m.member_id = cr.member_id
-WHERE cr.registration_id IS NOT NULL;
+LEFT JOIN class_attendance cr ON m.member_id = cr.member_id
+WHERE cr.class_attendance_id IS NOT NULL;

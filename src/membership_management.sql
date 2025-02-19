@@ -24,18 +24,17 @@ WHERE
 -- 2. Calculate the average duration of gym visits for each membership type
 -- TODO: Write a query to calculate the average duration of gym visits for each membership type
 
-SELECT 
-    m.type,
-    AVG(TIMESTAMPDIFF(MINUTE, a.check_in_time, a.check_out_time)) AS average_visit_duration
-FROM 
-    memberships m
-JOIN 
+SELECT
+    ms.type AS membership_type,
+    AVG(julianday(a.check_out_time) - julianday(a.check_in_time)) * 24 * 60 AS avg_visit_duration_minutes
+FROM
+    memberships ms
+JOIN
+    members m ON ms.member_id = m.member_id
+JOIN
     attendance a ON m.member_id = a.member_id
-WHERE 
-    a.check_out_time IS NOT NULL  -- Only consider sessions where check-out time is recorded
-GROUP BY 
-    m.type;
--- 3. Identify members with expiring memberships this year
+GROUP BY
+    ms.type;-- 3. Identify members with expiring memberships this year
 -- TODO: Write a query to identify members with expiring memberships this year
 SELECT 
     m.membership_id, 
@@ -48,7 +47,5 @@ FROM
     memberships m
 JOIN 
     Members mem ON m.member_id = mem.member_id
-WHERE 
-    m.status = 'Active' AND
-    YEAR(m.end_date) = YEAR(CURDATE()) 
-    AND m.end_date IS NOT NULL;  -- Ensure there’s an end date
+WHERE
+    m.end_date BETWEEN '2025-01-01' AND '2025-12-31';

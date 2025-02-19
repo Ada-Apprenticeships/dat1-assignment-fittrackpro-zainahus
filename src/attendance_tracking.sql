@@ -10,7 +10,7 @@
 -- TODO: Write a query to record a member's gym visit
 
 INSERT INTO attendance (attendance_id, member_id, location_id, check_in_time, check_out_time)
-VALUES (1, 123, 456, CURRENT_TIMESTAMP, '0000-00-00 00:00:00');  -- Use your preferred default time if needed
+VALUES (11, 123, 456, CURRENT_TIMESTAMP, '0000-00-00 00:00:00');  -- Use your preferred default time if needed
 
  -- Use actual attendance_id, member_id, and location_id
 -- 2. Retrieve a member's attendance history

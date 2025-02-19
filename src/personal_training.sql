@@ -21,5 +21,10 @@ FROM
     personal_training_sessions pts
 JOIN 
     Members m ON pts.member_id = m.member_id
-WHERE 
-    pts.staff_id = 101;  -- Replace 101 with the actual staff_id of the trainer
+ JOIN
+    staff s ON s.staff_id = pts.staff_id
+
+WHERE
+    s.first_name = 'Ivy' AND s.last_name = 'Irwin'
+
+    
