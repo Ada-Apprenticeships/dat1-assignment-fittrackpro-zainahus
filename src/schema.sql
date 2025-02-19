@@ -39,6 +39,7 @@ CREATE TABLE members (
     join_date DATE DEFAULT CURRENT_DATE,
     emergency_contact_name VARCHAR(100),
     emergency_contact_phone VARCHAR(15)
+    
  );
 drop table if exists staff;
 -- -- 3. staff
